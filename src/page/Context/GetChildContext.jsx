@@ -56,6 +56,9 @@ class GetChildContextDemo extends Component {
             currentThemeIndex: this.state.currentThemeIndex,
         }
     }
+    // shouldComponentUpdate() {
+    //     return false;
+    // }
     changeTheme = (event) => {
         event.persist();
         this.setState(preState => ({
