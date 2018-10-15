@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { Fragment } from "react";
 import AsyncCompLoader from '@components/AsyncCompLoader';
+import Nav from '@components/Nav';
 import Home from "@page/Home";
 
 const configs = [{
@@ -20,30 +21,26 @@ const configs = [{
   path: '/context/get-child-context',
   name: 'GetChildContext',
   component: () => import("../page/Context/GetChildContext"),
+}, {
+  path: '/context/context-provider',
+  name: 'ContextProvider',
+  component: () => import("../page/Context/ContextProvider/index.jsx"),
 }];
 
 const routes = () => (
   <Router>
     <Fragment>
-      <ul className="hq-nav">
-        {
-          configs.map(({ path, name }, index) => (
-            <li key={`path_${index}`}>
-              <Link to={path}>{name}</Link>
-            </li>
-          ))
-        }
-      </ul>
+      <Nav menus={configs} />
       <Switch>
-        {
-          configs.map(({ path, component, needAsync = true}, index) => (
-            <Route
-              key={`route_${index}`}
-              path={path} 
-              component={needAsync ? AsyncCompLoader(component) : component} />
-          ))
-        }
-      </Switch>
+          {
+            configs.map(({ path, component, needAsync = true}, index) => (
+              <Route
+                key={`route_${index}`}
+                path={path} 
+                component={needAsync ? AsyncCompLoader(component) : component} />
+            ))
+          }
+        </Switch>
     </Fragment>
   </Router>
 );
