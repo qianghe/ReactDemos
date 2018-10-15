@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { themeOptions } from './dataSource';
 
 class ThemeSelectButton extends Component {  
     static contextTypes = {
@@ -9,11 +10,9 @@ class ThemeSelectButton extends Component {
     render() {
         const { themes = {}, currentThemeIndex } = this.context;
         const themeKeys = Object.keys(themes);
-        const currentThemeKey = themeKeys[currentThemeIndex];
 
         return (
             <select 
-                style={themes[currentThemeKey]}
                 value={currentThemeIndex}
                 onChange={this.props.onChange}
             >
@@ -34,16 +33,7 @@ class ThemeSelectButton extends Component {
 
 class GetChildContextDemo extends Component {
     state = {
-        themes: {
-           dark: {
-               backgroundColor: '#a0a0a0',
-               color: 'red',
-           },
-           light: {
-               backgroundColor: '#999',
-               color: 'green',
-           },
-        },
+        themes: themeOptions,
         currentThemeIndex: 0,
     }
     static childContextTypes = {
@@ -66,11 +56,20 @@ class GetChildContextDemo extends Component {
         }));
     }
     render() {
+        const { themes, currentThemeIndex } = this.state;
+        const themeKey = Object.keys(themes)[currentThemeIndex];
+        const theme = themes[themeKey];
+
         return (                
-            <>
-                <h1>This is a test page.</h1>
+            <div className="hq-app-content">
                 <ThemeSelectButton onChange={this.changeTheme} />
-            </>
+                <h2 style={{ marginTop: 20, padding: 20, ...theme }}>
+                    Current Theme bgColor is
+                    <span style={{ marginLeft: 10, fontStyle: 'italic', fontSize: 35 }}>
+                        “{theme.backgroundColor}”
+                    </span>
+                </h2>
+            </div>
         )
     }
 }

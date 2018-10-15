@@ -1,7 +1,48 @@
 .hq-app {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  display: flex;
+
+  h1, h2 ,h3, p {
+    padding: 0;
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  &-content {
+    padding: 20px;
+  }
+
+  select {
+    width: 150px;
+    height: 40px;
+    border: none;
+    color: #a0a0a0;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input[type="button"] {
+    background: #eee;
+    padding: 15px 40px;
+    border-radius: 5px;
+    color: #a0a0a0;
+    font-size: 20px;
+    border: none;
+    outline:none;
+
+    &:hover {
+      background-color: orange;
+      color: #fff;
+    }
+
+    &:focus,
+    &:blur {
+      outline: nonel
+    }
+  }
 }

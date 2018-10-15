@@ -140,10 +140,10 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'react-native': 'react-native-web',
       '@src': path.resolve(__dirname, '../src'),
       '@page': path.resolve(__dirname, '../src/page'),
       '@components': path.resolve(__dirname, '../src/components'),
+      '@common': path.resolve(__dirname, '../src/common'),
       '@route': path.resolve(__dirname, '../src/route'),
     },
     plugins: [
@@ -216,6 +216,7 @@ module.exports = {
               ),
               
               plugins: [
+                ["@babel/plugin-proposal-decorators", { "legacy": true }],
                 [
                   require.resolve('babel-plugin-named-asset-import'),
                   {
