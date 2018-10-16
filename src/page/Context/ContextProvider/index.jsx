@@ -5,7 +5,6 @@ import ThemeAndLanguageConsumer from './components/ThemeAndLanguageConsumer';
 import Select from './components/Select';
 import Content from './components/Content';
 import './index.scss';
-
 class ContextProviderDemo extends Component {
     render() {
         return (

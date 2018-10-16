@@ -5,4 +5,5 @@ const timer = setInterval(() => {
     postMessage({
         counter,
     });
+    if (counter === 0) clearInterval(timer);
 }, 1000);

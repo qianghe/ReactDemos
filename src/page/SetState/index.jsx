@@ -55,7 +55,6 @@ class SetStateDemo extends Component {
     @log('orange')
     render() {
         const { activeTabIndex } = this.state;
-        console.log('render');
         return (
             <div>
                 <Tab 
