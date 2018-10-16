@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Talk from '@components/Talk';
 import talks from './talks.js';
 import { log } from '@src/common/decorator.js';
-import Context from '../Context/ContextProvider/context.js';
 import './index.scss';
 
 class LifeCycleChild extends Component {
@@ -71,22 +70,17 @@ class LifeCycleParent extends Component {
         const { counter, showContent, talks } = this.state;
         return (
           <div>
-              <Context.UserConsumer>
-                    {({name}) => (
-                            <div className="life-cycle">
-                                <input type="button" onClick={this.triggerCall} value="Start Talking" />
-                                <span>{name}12313</span>
-                                {
-                                    showContent ? (
-                                        <div className="life-cycle-content">
-                                            <Talk talks={talks} />
-                                            <LifeCycleChild countdown={counter} />
-                                        </div>
-                                    ) : ''
-                                }
-                            </div>
-                    )}
-                </Context.UserConsumer>
+            <div className="life-cycle">
+                <input type="button" onClick={this.triggerCall} value="Start Talking" />
+                {
+                    showContent ? (
+                        <div className="life-cycle-content">
+                            <Talk talks={talks} />
+                            <LifeCycleChild countdown={counter} />
+                        </div>
+                    ) : ''
+                }
+            </div>
           </div>
         );
     }

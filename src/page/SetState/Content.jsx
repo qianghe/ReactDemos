@@ -1,6 +1,6 @@
 import React from 'react';
 import HighLight from 'react-highlight';
-import '../../../node_modules/highlight.js/styles/atelier-dune-light.css';
+import '../../../node_modules/highlight.js/styles/atelier-sulphurpool-dark.css';
 
 const first = `
 //更新counter
