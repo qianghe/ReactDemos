@@ -8,11 +8,11 @@ export const welcomeMessages = {
 export const languageOptions = ['Chinese', 'English', 'Eλληνικά', 'Español'];
 export const themeOptions = {
     dark: {
-        backgroundColor: 'black',
+        backgroundColor: '#1c2a48',
         color: '#fff',
     },
     light: {
-        backgroundColor: 'orange',
+        backgroundColor: '#bbdefb',
         color: '#fff',
     }
 };

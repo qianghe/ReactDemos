@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import AsyncCompLoader from '@components/AsyncCompLoader';
 import Nav from '@components/Nav';
 import Home from "@page/Home";
+import Context from '@page/Context/ContextProvider/context.js';
 
 const configs = [{
   path: '/home',
@@ -18,31 +19,29 @@ const configs = [{
   name: 'SetState',
   component: () => import("../page/SetState"),
 }, {
-  path: '/context/get-child-context',
-  name: 'GetChildContext',
-  component: () => import("../page/Context/GetChildContext"),
-}, {
-  path: '/context/context-provider',
-  name: 'ContextProvider',
-  component: () => import("../page/Context/ContextProvider/index.jsx"),
+  path: '/context',
+  name: 'Context',
+  component: () => import("../page/Context"),
 }];
 
 const routes = () => (
-  <Router>
-    <Fragment>
-      <Nav menus={configs} />
-      <Switch>
-          {
-            configs.map(({ path, component, needAsync = true}, index) => (
-              <Route
-                key={`route_${index}`}
-                path={path} 
-                component={needAsync ? AsyncCompLoader(component) : component} />
-            ))
-          }
-        </Switch>
-    </Fragment>
-  </Router>
+    <Router>
+      <Fragment>
+        <Context.UserProvider value={{name: 'hqiswonder'}}>
+          <Nav menus={configs} />
+          <Switch>
+              {
+                configs.map(({ path, component, needAsync = true}, index) => (
+                  <Route
+                    key={`route_${index}`}
+                    path={path} 
+                    component={needAsync ? AsyncCompLoader(component) : component} />
+                ))
+              }
+            </Switch>
+          </Context.UserProvider>
+      </Fragment>
+    </Router>
 );
 
 export default routes;

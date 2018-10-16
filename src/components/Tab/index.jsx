@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import './index.scss';
 
 class Tab extends Component {
+    state = {
+        classTabNames: ['one', 'two', 'three', 'four'],
+    }
     render() {
-        const { tabs, activeIndex, toggleTab } = this.props;
+        const { tabs, activeIndex, toggleTab} = this.props;
+        const { classTabNames } = this.state;
+
         return (
-            <ul className="hq-tab">
+            <ul className={classNames({
+                'hq-tabs': true,
+                [`hq-tabs--${classTabNames[activeIndex]}`]: true,
+            })}>
                 {
                     tabs.map(({ name }, index) => (
                         <li 

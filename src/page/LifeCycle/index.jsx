@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Talk from '@components/Talk';
+import talks from './talks.js';
 import { log } from '@src/common/decorator.js';
+import Context from '../Context/ContextProvider/context.js';
+import './index.scss';
 
 class LifeCycleChild extends Component {
     state = {
@@ -26,7 +30,7 @@ class LifeCycleChild extends Component {
         const { throwMessage } = this.state;
 
         return (
-            throwMessage ? <div>I come back. dady...</div> : '....'
+            throwMessage ? <div style={{ display: 'none' }}>I come back. dady...</div> : ''
         );
     }
 }
@@ -35,6 +39,7 @@ class LifeCycleParent extends Component {
         counter: 3,
         showContent: false,
         timer: null,
+        talks,
     }
     @log()
     componentWillMount() {}
@@ -46,6 +51,7 @@ class LifeCycleParent extends Component {
         this.setState({
             showContent: true,
         });
+       setTimeout(() => {
         const worker = new Worker('./worker.js');
         worker.onmessage = (message) => {
             const { counter } = message.data;
@@ -54,6 +60,7 @@ class LifeCycleParent extends Component {
                 counter,
             });
         };
+       }, 1800);
     }
     @log()
     componentDidUpdate() {
@@ -61,21 +68,26 @@ class LifeCycleParent extends Component {
     }
     @log('orange')
     render() {
-        const { counter, showContent } = this.state;
+        const { counter, showContent, talks } = this.state;
         return (
-            <div>
-                <input type="button" onClick={this.triggerCall} value="Start" />
-                {
-                    showContent ? (
-                        <div>
-                            <h3>call your baby....</h3>
-                            <h4>count down num 3</h4>
-                            <p>{counter}</p>
-                            <LifeCycleChild countdown={counter}/>
-                        </div>
-                    ) : ''
-                }
-            </div>
+          <div>
+              <Context.UserConsumer>
+                    {({name}) => (
+                            <div className="life-cycle">
+                                <input type="button" onClick={this.triggerCall} value="Start Talking" />
+                                <span>{name}12313</span>
+                                {
+                                    showContent ? (
+                                        <div className="life-cycle-content">
+                                            <Talk talks={talks} />
+                                            <LifeCycleChild countdown={counter} />
+                                        </div>
+                                    ) : ''
+                                }
+                            </div>
+                    )}
+                </Context.UserConsumer>
+          </div>
         );
     }
 }

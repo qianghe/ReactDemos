@@ -1,0 +1,27 @@
+.hq-context {
+    margin-top: 30px;
+    margin-left: 50px;
+
+    .hq-tabs {
+        width: 400px;
+
+        &--one::after {
+            left: 0;
+        }
+        &--two::after {
+            left: 50%;
+        }
+
+        &::after {
+            width: 50%;
+        }
+
+        li {
+            width: 50%;
+        }
+    }
+
+    >section {
+        margin-top: 50px;
+    }
+}

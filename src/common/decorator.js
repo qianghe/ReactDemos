@@ -1,6 +1,5 @@
 export function log(bgColor = 'green', bgColorForComp = 'yellow') {
     return function(target, name, descriptor) {
-        console.log('target', target);
         const oldValue = descriptor.value;
         const componentName = target.constructor.name || 'UNKONW';
     
@@ -15,6 +14,6 @@ export function log(bgColor = 'green', bgColorForComp = 'yellow') {
       
         return descriptor;
       }
-}
+};
 
   
